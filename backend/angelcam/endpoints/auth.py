@@ -17,8 +17,8 @@ def auth_me(request):
     token = data.get('token')
     if not token:
         return Response({'error': 'Missing token'}, status=401)
-    response = requests.get(f'{API_ENDPOINT}/me',
-                            headers={'Authorization': f'Bearer {token}'})
+    response = requests.get(f'{API_ENDPOINT}/me/',
+                            headers={'Authorization': f'PersonalAccessToken {token}'})
     if response.status_code == 200:
         return Response(response.json())
     return Response({'error': 'Invalid token'}, status=401)
